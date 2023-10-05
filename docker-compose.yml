@@ -1,0 +1,21 @@
+version: '3.8'
+
+networks:
+  scheduling-net:
+    name: scheduling-net
+    driver: bridge
+
+services:
+  scheduling:
+    image: node:20.5.0
+    container_name: scheduling
+    working_dir: /home/node
+    volumes:
+      - .:/home/node
+    env_file:
+      - .env
+    command: bash -c "npm install -g npm@10.2.0 && npm run build && npm run start:dev"
+    ports:
+      - 19118:3000
+    networks:
+      - scheduling-net
