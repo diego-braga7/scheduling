@@ -4,8 +4,36 @@ networks:
   scheduling-net:
     name: scheduling-net
     driver: bridge
+  postgres:
+    name: postgres
+    driver: bridge
 
 services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${DB_ADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8081:80"
+    depends_on:
+      - postgres
+    networks:
+      - postgres
   scheduling:
     image: node:20.5.0
     container_name: scheduling
@@ -17,5 +45,11 @@ services:
     command: bash -c "npm install -g npm@10.2.0 && npm run build && npm run start:dev"
     ports:
       - 19118:3000
+    depends_on:
+      - postgres
     networks:
-      - scheduling-net
+      - postgres
+      - scheduling-net  
+
+volumes:
+  postgres:
