@@ -7,12 +7,13 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [DatabaseModule,
+  imports: [
+    DatabaseModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
     AuthModule,
-    UserModule
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

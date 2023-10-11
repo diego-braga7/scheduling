@@ -1,10 +1,14 @@
-import { ValidatorConstraint, ValidatorConstraintInterface, ValidationArguments } from 'class-validator';
+import {
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
+  ValidationArguments,
+} from 'class-validator';
 import * as crypto from 'crypto';
 
 @ValidatorConstraint({ name: 'isMd5Hash', async: false })
 export class IsMd5HashConstraint implements ValidatorConstraintInterface {
   validate(value: any, args: ValidationArguments) {
-      console.log('ok');
+    console.log('ok');
     if (typeof value !== 'string') {
       return false;
     }

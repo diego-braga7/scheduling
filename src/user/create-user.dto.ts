@@ -1,4 +1,10 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength, Validate } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  MinLength,
+  Validate,
+} from 'class-validator';
 import { IsMd5HashConstraint } from 'src/util/validator/Is-Md5-hash-constraint';
 
 export class CreateUserDto {

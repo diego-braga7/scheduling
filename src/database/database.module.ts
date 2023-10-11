@@ -3,8 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
-  imports: [TypeOrmModule.forRootAsync(
-    {
+  imports: [
+    TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
@@ -18,7 +18,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         entities: [],
         autoLoadEntities: true,
       }),
-    }
-  )],
+    }),
+  ],
 })
 export class DatabaseModule {}
