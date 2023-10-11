@@ -28,8 +28,6 @@ export class ${serviceNameClass}Service {
 
 // Função para adicionar o serviço ao módulo
 const addToModuleProviders = (moduleName, serviceName) => {
-
-    
       
     const moduleFileName = `${moduleName}/${moduleName}.module.ts`;
     const fullPath = path.join('src', moduleFileName);
