@@ -1,5 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntityAbstract } from './base-entity.abstract';
+import { Validate } from 'class-validator';
+import { IsMd5Hash } from 'src/util/validator/Is-Md5-hash-constraint';
 
 @Entity()
 export class User extends BaseEntityAbstract {

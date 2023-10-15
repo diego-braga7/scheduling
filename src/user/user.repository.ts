@@ -13,4 +13,12 @@ export class UserRepository {
   public async save(user: User): Promise<User> {
     return this.repository.save(user);
   }
+
+  public async findByField(field: string, value: any){
+    return this.repository.createQueryBuilder('user').
+    where(`user.${field} = :value`, {value}).getOne();
+
+  }
+
+  
 }
